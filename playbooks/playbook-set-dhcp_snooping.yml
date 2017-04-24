@@ -1,0 +1,29 @@
+---
+- hosts: ci_list
+  gather_facts: no
+  connection: local
+  vars_files:
+     - '../group_vars/vars.yml'
+
+  tasks:
+
+  - name: SYS | Define provider
+    no_log: True
+    set_fact:
+      provider:
+        host: "{{ inventory_hostname }}"
+        username: "{{ username }}"
+        password: "{{ password }}"
+        authorize: no
+        transport: cli
+
+  - name: IOS | configure udld
+    ios_config:
+      provider: "{{ provider }}"
+      src: "../conf_templates/configure_dhcp_snooping.j2"
+
+  - name: IOS | save configuration
+    ios_command:
+      provider: "{{ provider }}"
+      commands:
+        - write memory

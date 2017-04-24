@@ -1,0 +1,27 @@
+---
+- hosts: switzerland
+  connection: local
+  gather_facts: False
+  vars_files:
+     - '../group_vars/vars.yml'
+
+  tasks:
+
+  - name: SYS | Define provider
+    no_log: True
+    set_fact:
+      provider:
+        host: "{{ inventory_hostname }}"
+        username: "{{ username }}"
+        password: "{{ password }}"
+        authorize: no
+        transport: cli
+
+  - name: IOS | Collect facts about the device
+    ios_facts:
+      provider: "{{ provider }}"
+      gather_subset:
+        - "!hardware"
+
+    register: ios_facts_out
+  - copy: content="{{ ios_facts_out | to_nice_json }}" dest="../device_details/{{ inventory_hostname }}_iosfacts.json"

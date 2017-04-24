@@ -1,0 +1,5 @@
+errdisable recovery cause udld
+{% for interface in hostvars[inventory_hostname]['interfaces'] %}
+interface {{ interface }}
+ udld port aggressive
+{% endfor %}

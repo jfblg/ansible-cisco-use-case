@@ -1,0 +1,8 @@
+{% for interface in hostvars[inventory_hostname]['interfaces'] %}
+interface {{ interface }}
+ ip dhcp snooping trust
+ exit
+{% endfor %}
+ip dhcp snooping
+ip dhcp snooping vlan 500
+no ip dhcp snooping information option

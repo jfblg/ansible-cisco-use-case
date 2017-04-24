@@ -1,0 +1,5 @@
+[ci_list]
+ch23 interfaces="['Port-channel10', 'GigabitEthernet1/0/47', 'GigabitEthernet1/0/48']"
+ch27 interfaces="['Port-channel10', 'GigabitEthernet1/0/49', 'GigabitEthernet1/0/50']"
+ch28 interfaces="['Port-channel10', 'GigabitEthernet1/0/49', 'GigabitEthernet1/0/50']"
+ch22 interfaces="['Port-channel1', 'GigabitEthernet1/0/47', 'GigabitEthernet1/0/48']"
